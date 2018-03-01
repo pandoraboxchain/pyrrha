@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  rinkeby:
+    build: ./rinkeby
+    restart: always
+    container_name: rinkeby
+    hostname: rinkeby
+    volumes:
+     - /mnt/rinkeby:/root/.ethereum
+    ports:
+     - "8545:8545"
+     - "8546:8546"
+     - "30303:30303"
