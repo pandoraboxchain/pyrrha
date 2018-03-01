@@ -2,10 +2,9 @@ version: "2"
 services:
 
   pyrrha_boxproxy:
+    restart: always
     container_name: "pyrrha_boxproxy"
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: pandoraboxchain/pyrrha_boxproxy:latest
     environment:
       - WEB3_PROTOCOL=http
       - WEB3_HOSTNAME=rinkeby.pandora.network
@@ -22,10 +21,9 @@ services:
           - pyrrha_boxproxy
 
   pyrrha_boxplorer:
+    restart: always
     container_name: "pyrrha_boxplorer"
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: pandoraboxchain/pyrrha_boxplorer:latest
     ports:
       - "80:8080"
     networks:
