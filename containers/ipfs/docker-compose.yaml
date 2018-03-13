@@ -1,0 +1,16 @@
+version: "2"
+services:
+
+  ipfs_host:
+    container_name: ipfs_host
+    image: ipfs/go-ipfs:latest
+    volumes:
+      - /mnt/ipfs/data:/data/ipfs
+      - /mnt/ipfs/export:/export
+    ports:
+    # Ports for Swarm TCP, Swarm UTP, API, Gateway, Swarm Websockets
+      - "5001:5001"
+      - "4001:4001"
+      - "4002/udp:4002/udp"
+      #- "9090:8080"
+      #- "9091:8081"
