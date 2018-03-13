@@ -1,57 +1,19 @@
 version: "2"
 services:
 
-  rinkeby:
-    container_name: rinkeby
-    build: 
-      context: ./containers/rinkeby/
-      dockerfile: ./Dockerfile
-    hostname: rinkeby    
-    volumes:
-     - /mnt/rinkeby:/root/.ethereum
-    ports:
-     - "8545:8545"
-     - "8546:8546"
-     - "30303:30303"
-     - "30303/udp:30303/udp"
-     - "30304/udp:30304/udp"
-    restart: always
-    networks:
-      pyrrha:
-        aliases:
-          - rinkeby
-  
-  ipfs_host:
-    container_name: ipfs_host
-    image: ipfs/go-ipfs:latest
-    volumes:
-      - /mnt/ipfs/data:/data/ipfs
-      - /mnt/ipfs/export:/export
-    ports:
-    # Ports for Swarm TCP, Swarm uTP, API, Gateway, Swarm Websockets
-      - "5001:5001"
-      - "4001:4001"
-      - "4002/udp:4002/udp"
-      #- "9090:8080"
-      #- "9091:8081"
-    networks: 
-      pyrrha:
-        aliases:
-          - ipfs_host
-
   pyrrha_webclient:
     container_name: pyrrha_webclient
     image: pandoraboxchain/pyrrha_webclient:latest
     ports:
       - "8082:8080"
     volumes:
-      - "/logs/webclient:/logs"
+      - "/mnt/pyrrha/logs/webclient:/logs"
     restart: always
     networks:
       pyrrha:
         aliases:
           - pyrrha_webclient
-  
+
   pyrrha_boxproxy:
     container_name: pyrrha_boxproxy
     image: pandoraboxchain/pyrrha_boxproxy:latest
@@ -64,12 +26,12 @@ services:
     ports:
       - "1111:1111"
     volumes:
-      - "/logs/boxproxy:/logs"
+      - "/mnt/pyrrha/logs/boxproxy:/logs"
     restart: always
     networks: 
       pyrrha:
-          aliases:
-            - pyrrha_boxproxy
+        aliases:
+          - pyrrha_boxproxy
 
   pyrrha_boxplorer:
     container_name: pyrrha_boxplorer
@@ -77,7 +39,7 @@ services:
     ports:
       - "8081:8080"
     volumes:
-      - "/logs/boxplorer:/logs"
+      - "/mnt/pyrrha/logs/boxplorer:/logs"
     restart: always
     networks:
       pyrrha:
@@ -88,15 +50,15 @@ services:
     container_name: nginx
     image: nginx
     volumes:
-      - "./containers/nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
-      - "/logs/nginx:/var/log/nginx"
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "/mnt/pyrrha/logs/nginx:/var/log/nginx"
     ports:
       - "80:80"
     restart: always
     networks: 
       pyrrha:
-          aliases:
-            - nginx
+        aliases:
+          - nginx
 
 networks:
   pyrrha:
