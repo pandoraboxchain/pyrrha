@@ -20,3 +20,6 @@ services:
       pyrrha:
         aliases:
           - rinkeby
+
+networks:
+  pyrrha:
