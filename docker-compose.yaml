@@ -3,11 +3,11 @@ services:
 
   pyrrha_webclient:
     container_name: pyrrha_webclient
-    image: pandoraboxchain/pyrrha_webclient:latest
+    image: pandoraboxchain/pyrrha_webclient:staging
     ports:
       - "8082:8080"
     volumes:
-      - "/mnt/pyrrha/logs/webclient:/logs"
+      - "./logs/webclient:/logs"
     restart: always
     networks:
       pyrrha:
@@ -16,7 +16,7 @@ services:
 
   pyrrha_boxproxy:
     container_name: pyrrha_boxproxy
-    image: pandoraboxchain/pyrrha_boxproxy:latest
+    image: pandoraboxchain/pyrrha_boxproxy:staging
     environment:
       - WEB3_PROTOCOL=wss
       - WEB3_HOSTNAME=rinkeby.infura.io/ws
@@ -27,7 +27,7 @@ services:
       - "1111:1111"
       - "1337:1337"
     volumes:
-      - "/mnt/pyrrha/logs/boxproxy:/logs"
+      - "./logs/boxproxy:/logs"
     restart: always
     networks: 
       pyrrha:
@@ -36,11 +36,11 @@ services:
 
   pyrrha_boxplorer:
     container_name: pyrrha_boxplorer
-    image: pandoraboxchain/pyrrha_boxplorer:latest
+    image: pandoraboxchain/pyrrha_boxplorer:staging
     ports:
       - "8081:8080"
     volumes:
-      - "/mnt/pyrrha/logs/boxplorer:/logs"
+      - "./logs/boxplorer:/logs"
     restart: always
     networks:
       pyrrha:
@@ -52,7 +52,7 @@ services:
     image: nginx
     volumes:
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
-      - "/mnt/pyrrha/logs/nginx:/var/log/nginx"
+      - "./logs/nginx:/var/log/nginx"
     ports:
       - "80:80"
     restart: always
