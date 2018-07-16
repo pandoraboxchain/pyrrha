@@ -24,7 +24,7 @@ services:
       - PAN_ADDRESS=0x9ac5265030f55b594198443db41684e0f65ce1b3
       - MARKET_ADDRESS=0x5fafdfed7ed553716e877961d41ca3fae6a40c35
     ports:
-      - "1111:1111"
+      - "8083:1111"
       - "1337:1337"
     volumes:
       - "./logs/boxproxy:/logs"
