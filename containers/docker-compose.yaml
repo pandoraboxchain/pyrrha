@@ -48,8 +48,8 @@ services:
           - pyrrha_boxplorer
 
   nginx:
-    container_name: nginx:1.14
-    image: nginx
+    container_name: nginx
+    image: nginx:1.14
     volumes:
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
       - "/mnt/pyrrha/logs/nginx:/var/log/nginx"
