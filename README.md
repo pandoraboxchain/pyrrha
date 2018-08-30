@@ -1,6 +1,8 @@
 # pyrrha
 Root Pandora Pyrrha repo for deployment of all of the pyrrha repos
 
+- [Release guide](./docs/releaseguide.md)  
+
 ## Volumes folders
 ```
 /mnt/rinkeby      # geth node data
