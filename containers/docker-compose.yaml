@@ -47,6 +47,56 @@ services:
         aliases:
           - pyrrha_boxplorer
 
+# RSK based apps
+
+  rsk_webclient:
+    container_name: rsk_webclient
+    image: pandoraboxchain/rsk_webclient:latest
+    ports:
+      - "8090:8080"
+    volumes:
+      - "/mnt/pyrrha/logs/rsk_webclient:/logs"
+    restart: always
+    networks:
+      pyrrha:
+        aliases:
+          - rsk_webclient
+
+  rsk_boxproxy:
+    container_name: rsk_boxproxy
+    image: pandoraboxchain/rsk_boxproxy:latest
+    environment:
+      - WEB3_PROTOCOL=ws
+      - WEB3_HOSTNAME=rinkeby.pandora.network
+      - WEB3_PORT=8546
+      - PAN_ADDRESS=0xf23f45caa5c697c54d2e92ecbee48855233040e1
+      - MARKET_ADDRESS=0xd1feab2687c6beea17d8c1f728aaf54aed5c0ea9
+    ports:
+      - "1112:1111"
+      - "1338:1337"
+    volumes:
+      - "/mnt/pyrrha/logs/rsk_boxproxy:/logs"
+    restart: always
+    networks: 
+      pyrrha:
+        aliases:
+          - rsk_boxproxy
+
+  rsk_boxplorer:
+    container_name: rsk_boxplorer
+    image: pandoraboxchain/rsk_boxplorer:latest
+    ports:
+      - "8091:8080"
+    volumes:
+      - "/mnt/pyrrha/logs/rsk_boxplorer:/logs"
+    restart: always
+    networks:
+      pyrrha:
+        aliases:
+          - rsk_boxplorer
+
+# Web server
+
   nginx:
     container_name: nginx
     image: nginx:1.14

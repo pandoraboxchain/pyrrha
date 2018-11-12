@@ -22,5 +22,26 @@ services:
         aliases:
           - pyrrha_webclient
 
+  rsk_webclient:
+    restart: always
+    container_name: "rsk_webclient"
+    image: pandoraboxchain/rsk_webclient:latest
+    environment:
+      - REACT_APP_WEB3_PROTOCOL=ws
+      - REACT_APP_WEB3_PORT=4445
+      - REACT_APP_WEB3_HOSTNAME=rsktest.pandora.network
+      - REACT_APP_PAN_ADDRESS=0x5c86aa41d803b60cca6c114645d341c23b0cbac5
+      - REACT_APP_MARKET_ADDRESS=0xbb7b9caf771015279e04197c09e08703a9353b6f
+      - REACT_APP_IPFS_PROTOCOL=http
+      - REACT_APP_IPFS_HOST=ipfs.pandora.network
+      - REACT_APP_IPFS_PORT=5001
+      - REACT_APP_WEB3_RECONNECT_TIMEOUT=5000
+    ports:
+      - "82:8080"
+    networks:
+      webclient:
+        aliases:
+          - rsk_webclient
+
 networks:
   webclient:

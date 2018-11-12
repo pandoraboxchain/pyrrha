@@ -31,5 +31,35 @@ services:
         aliases:
           - pyrrha_boxplorer
 
+  rsk_boxproxy:
+    restart: always
+    container_name: "rsk_boxproxy"
+    image: pandoraboxchain/rsk_boxproxy:latest
+    environment:
+      - WEB3_PROTOCOL=http
+      - WEB3_HOSTNAME=rsktest.pandora.network
+      - WEB3_PORT=4445
+      - PAN_ADDRESS=0x5c86aa41d803b60cca6c114645d341c23b0cbac5
+      - MARKET_ADDRESS=0xbb7b9caf771015279e04197c09e08703a9353b6f
+    ports:
+      - "1111:1111"
+    volumes:
+      - "./tmp:/logs"
+    networks:
+      main:
+        aliases:
+          - rsk_boxproxy
+
+  rsk_boxplorer:
+    restart: always
+    container_name: "rsk_boxplorer"
+    image: pandoraboxchain/rsk_boxplorer:latest
+    ports:
+      - "81:8080"
+    networks:
+      main:
+        aliases:
+          - rsk_boxplorer
+
 networks:
   main:
