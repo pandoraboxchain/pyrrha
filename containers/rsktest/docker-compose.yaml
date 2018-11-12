@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+  node_rsk:
+    container_name: node_rsk
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    hostname: node_rsk
+    # volumes:
+    #  - /mnt/node_rsk:/var/lib/rsk
+    ports:
+     - "4444:4444"
+     - "4445:4445"
+     - "50505:50505"
+    restart: always
+    networks:
+      pyrrha:
+        aliases:
+          - node_rsk
+
+networks:
+  pyrrha:
+    driver: bridge
