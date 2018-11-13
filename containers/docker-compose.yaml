@@ -68,7 +68,7 @@ services:
     environment:
       - WEB3_PROTOCOL=ws
       - WEB3_HOSTNAME=node.rsk.pandora.network
-      - WEB3_PORT=8546
+      - WEB3_PORT=4445
       - PAN_ADDRESS=0xcdca0f85f696a8a8d70a6ecd74236690548bf44b
       - MARKET_ADDRESS=0x55da07dbb7c76cb6be03f6ab6669626a83ec250d
     ports:
