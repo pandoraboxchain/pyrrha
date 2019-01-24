@@ -18,9 +18,9 @@ services:
     container_name: pyrrha_boxproxy
     image: pandoraboxchain/pyrrha_boxproxy:staging
     environment:
-      - WEB3_PROTOCOL=ws
-      - WEB3_HOSTNAME=rinkeby.pandora.network
-      - WEB3_PORT=8546
+      - WEB3_PROTOCOL=wss
+      - WEB3_HOSTNAME=rinkeby.infura.io/ws
+      - WEB3_PORT=
       - PAN_ADDRESS=0x49e429ec1199d077b1f2ae8b6100b220f56401ef
       - PANDORA_ADDRESS=0x044662dfbfa067dd603f54b900cc157b9d6618d4
       - ECONOMIC_ADDRESS=0xf70a24b04e6b59eb6af9bd176e1ee24a97fa1961
